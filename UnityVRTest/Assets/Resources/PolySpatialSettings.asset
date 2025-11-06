@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019d9e67133646548a506370e966316a, type: 3}
   m_Name: PolySpatialSettings
   m_EditorClassIdentifier: 
-  m_PackageVersion: 2.3.1
+  m_DisablePolySpatial: 0
+  m_PackageVersion: 2.4.2
   m_EnableStatistics: 0
   m_ColliderSyncLayerMask:
     serializedVersion: 2
@@ -61,6 +62,7 @@ MonoBehaviour:
       bottom: -1.19175
   m_MaterialSwapSets: []
   m_EnablePolySpatialRaycaster: 1
+  m_MaximumNumOfAudioPacketsPerSend: 4
   m_SelectedValidationType: 1
   m_ShowWarningsForShaderGraphsInPackages: 1
   m_MinifyShaderGraphNodeNames: 1
@@ -82,7 +84,13 @@ MonoBehaviour:
   - 127.0.0.1
   m_SerializedIgnoredScenePaths: []
   m_MockBackend: 0
-  m_EnableGenericComponentTracker: 0
+  m_SendShadersForAllMaterials: 1
+  m_ShaderGlobalTextureFilterMode: 0
+  m_ShaderGlobalTextureFilterProperties: []
+  m_LoadBytecodeForBuiltInShaders: 1
+  m_PixelStreamingTransferMode: 1
+  m_PixelStreamingJPGCompressionQuality: 75
+  m_PixelStreamingWebRtcTextureScale: 1
   m_EnableTransformDeltas: 0
   m_DisableTransformDeltaEpsilonComparison: 0
   m_TransformDeltaPositionEpsilon: 0.0001
