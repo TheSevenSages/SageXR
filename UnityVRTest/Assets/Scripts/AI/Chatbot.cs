@@ -1,13 +1,16 @@
 using LLMUnity;
 using System;
+using TMPro;
 using UnityEngine;
 
 public class Chatbot : MonoBehaviour
 {
+    public TMP_Text output;
     // Is called periodically while the response is being recieved
     void HandleReply(string reply)
     {
         //Debug.Log($"AI RESPONSE: {reply}");
+        output.text = reply;
     }
 
     // Is called when the AI has finished formulating its response
@@ -28,7 +31,8 @@ public class Chatbot : MonoBehaviour
             else
             {
                 character.CancelRequests(); // Cancel any requests to this character that are in progress
-                var response = await character.Chat(message, HandleReply, ReplyCompleted);
+                var response = await character.Chat(message, null, ReplyCompleted);
+                output.text = response;
                 Debug.Log($"AI RESPONSE: {response}");
             }
         }
