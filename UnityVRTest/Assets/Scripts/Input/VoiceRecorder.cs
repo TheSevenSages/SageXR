@@ -8,6 +8,7 @@ public class VoiceRecorder : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log(Microphone.devices[0]);
         int min_freq = 0;
         int max_freq = 0;
         Microphone.GetDeviceCaps(Microphone.devices[0], out min_freq, out max_freq);
