@@ -18,8 +18,6 @@ public class SpeechToText : MonoBehaviour
 
     [Header("UI")]
     public TMP_Text outputText;
-    public Button button;
-    public TMP_Text buttonText;
 
     [Header("Events")]
     public UnityEvent<string> onDoneSpeaking;
@@ -47,10 +45,6 @@ public class SpeechToText : MonoBehaviour
         // Whisper delegates
         recorder.OnRecordStop += OnRecordStop; // For some reason this is the syntax for C# delegates I guess?
         recorder.OnVadChanged += OnVadChanged;
-
-        // EventSystems
-        if (button == null) { throw new System.Exception("Button has not been assigned"); }
-        button.onClick.AddListener(OnButtonPressed);
     }
 
     // Begins recording to the connected microphone to detect when the user starts speaking
@@ -73,18 +67,15 @@ public class SpeechToText : MonoBehaviour
         recorder.StopRecord();
     }
 
-    private void OnButtonPressed()
+    public void ToggleOnOff()
     {
-        if (buttonText == null) { throw new System.Exception("Button Text has not been assigned"); }
         if (state == STTState.OFF)
         {
             StartDetecting();
-            buttonText.text = "STOP LISTENING";
         }
         else
         {
             TurnOff();
-            buttonText.text = "START LISTENING";
         }
     }
 
