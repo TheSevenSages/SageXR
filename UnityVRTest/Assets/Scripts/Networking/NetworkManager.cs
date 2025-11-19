@@ -151,6 +151,8 @@ public class NetworkManager : MonoBehaviour
     // --------------------------------------------------------
     // SHARED
 
+    // S
+
     // Written by Google Gemini, replace if causing issues
     public IPAddress GetSubnetMask()
     {

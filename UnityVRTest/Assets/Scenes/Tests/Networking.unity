@@ -1429,6 +1429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1303610746}
   - component: {fileID: 1303610747}
+  - component: {fileID: 1303610748}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1458,13 +1459,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303610745}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ecaada595962049b119a2137fab310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkManager
   isHost: 1
   deviceName: DEVICE_NAME
+--- !u!114 &1303610748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303610745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4a622c21a7cd147be229b8328d0e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Backend
 --- !u!1 &1519211981
 GameObject:
   m_ObjectHideFlags: 0
