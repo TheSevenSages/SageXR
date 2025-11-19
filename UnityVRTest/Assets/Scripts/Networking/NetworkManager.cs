@@ -37,23 +37,41 @@ public class NetworkManager : MonoBehaviour
     // HOST
 
     // Create a socket then listen on a port for any connection requests
-    private void SetupHost()
+    private async void SetupHost()
     {
         if (socket != null) { throw new Exception("Socket has already been set"); }
 
-        // Creates a new socket to send data over a TCP stream connection
-        socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        // Creates a new socket to listen for any incoming connections
+        Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-        // Bind our socket to a port
-        IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 0);
-        socket.Bind(localEP);
-       
-        IPAddress hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
-        int hostPort = ((IPEndPoint)socket.LocalEndPoint).Port;
-        Debug.Log("My local IpAddress is :" + hostIP + " I am connected on port number " + hostPort);
+        //try
+        //{
+            // Bind our socket to a port
+            IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 50000);
+            listener.Bind(localEP);
 
-        // Continuously broadcast invites on the LAN 
-        StartCoroutine(SendInvite(deviceName, hostIP, hostPort));
+            IPAddress hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+            int hostPort = ((IPEndPoint)listener.LocalEndPoint).Port;
+            Debug.Log("My local IpAddress is :" + hostIP + " I am connected on port number " + hostPort);
+
+            listener.Listen(5);
+
+            socket = await listener.AcceptAsync();
+            Debug.Log("CONNECTED");
+            byte[] message = null;
+            message = Encoding.ASCII.GetBytes("Hello World!");
+            int bytesSent = 0;
+            while (bytesSent < message.Length)
+            {
+                bytesSent += socket.Send(message, bytesSent, message.Length - bytesSent, SocketFlags.None);
+            }
+            //Continuously broadcast invites on the LAN
+            //StartCoroutine(SendInvite(deviceName, hostIP, hostPort));
+        //}
+        //finally
+        //{
+        //    listener.Close();
+        //}
     }
 
     // Send out an invite to every device on the local area network (LAN).
